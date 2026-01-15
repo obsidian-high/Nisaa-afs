@@ -2432,3 +2432,37 @@ body {
         display: none !important; 
     }
 }
+
+/* --- DESKTOP VIEW (Default) --- */
+
+/* 1. Hide the "Donate" text link inside the main nav menu on Desktop */
+.mobile-only-donate {
+  display: none;
+}
+
+/* 2. Ensure the main Desktop Button is visible */
+.desktop-donate {
+  display: inline-block; 
+}
+
+
+/* --- MOBILE VIEW (When screen is smaller than 768px) --- */
+@media screen and (max-width: 768px) {
+
+  /* 3. Show the "Donate" link inside the Hamburger menu */
+  .mobile-only-donate {
+    display: block;
+    /* Optional: Style it to look like a button inside the menu if you want */
+    background-color: #4A2C4A; /* Your brand purple */
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* 4. Hide the big header button on Mobile (to save space) */
+  .desktop-donate {
+    display: none; 
+  }
+}
