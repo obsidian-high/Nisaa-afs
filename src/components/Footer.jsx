@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../style.css'; // Ensure CSS is imported
 
 const Footer = () => {
   return (
@@ -38,7 +39,6 @@ const Footer = () => {
                     <Link to="/contact">Partner with us</Link>
                 </div>
 
-                {/* --- UPDATED CONTACT SECTION --- */}
                 <div className="f-col contact-col">
                     <h4>Contact Us</h4>
                     <p style={{ display: 'flex', gap: '10px' }}>
@@ -50,7 +50,6 @@ const Footer = () => {
                     <p><i className="fas fa-fax"></i> Fax: 515-255-4517</p>
                     <p><i className="fas fa-envelope"></i> Contact@nisaa-afs.org</p>
                 </div>
-                {/* ------------------------------- */}
             </div>
 
             <div className="footer-bottom">
@@ -61,6 +60,17 @@ const Footer = () => {
                     <a href="https://www.linkedin.com/company/nisaa-african-family-services" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
+
+            {/* --- NEW SECTION: YOUR CLICKABLE LOGO (EMAIL) --- */}
+<div className="developer-credit">
+    <span>Designed by</span>
+    
+    {/* Replace with your actual email address */}
+    <a href="mailto:itsmeaidenj@email.com" className="dev-link">
+        <img src="/arden-logo.png" alt="Arden Design" className="dev-logo" />
+    </a>
+</div>
+
         </div>
     </footer>
   );
