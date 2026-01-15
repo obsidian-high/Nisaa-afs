@@ -192,7 +192,7 @@ const Home = () => {
                   <p>Nisaa is more than an organization; it is a promise. A promise that no woman has to choose between her culture and her safety.</p>
                   <p>We built this space to ensure that African families have a voice, a refuge, and a path to healing.</p>
                   <div className="signature">
-                      <p className="sign-font">Hibo Jamaa</p>
+                      <p className="sign-font">Hibo Jama</p>
                       <span className="role">Executive Director</span>
                   </div>
               </div>

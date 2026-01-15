@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PageTransition from '../components/PageTransition'; // <--- IMPORT ADDED
+import PageTransition from '../components/PageTransition';
 
 const About = () => {
   // --- SCROLL ANIMATION LOGIC ---
@@ -19,7 +19,7 @@ const About = () => {
   }, []);
 
   return (
-    <PageTransition> {/* <--- WRAPPER STARTS HERE */}
+    <PageTransition>
       
       <div className="about-page">
         {/* Background Blobs */}
@@ -27,7 +27,7 @@ const About = () => {
         <div className="blob blob-sage"></div>
 
         {/* PAGE HERO */}
-        <header className="page-hero">
+        <header className="page-hero" style={{ paddingTop: '110px', paddingBottom: '10px' }}>
             <div className="container center-text">
                 <span className="sub-head">Our Foundation</span>
                 <h1>Rooted in <br /><em>Resilience</em></h1>
@@ -36,7 +36,7 @@ const About = () => {
         </header>
 
         {/* MAIN STORY SECTION */}
-        <section className="section-padding">
+        <section className="section-padding" style={{ paddingTop: '0' }}>
             <div className="container split-layout">
                 <div className="image-block fade-up">
                     <img src="/nisaagrp2.jpeg" alt="Community Gathering" />
@@ -53,7 +53,7 @@ const About = () => {
         </section>
 
         {/* TIMELINE SECTION */}
-        <section className="section-padding bg-white">
+        <section className="section-padding bg-white" style={{ paddingBottom: '20px' }}>
             <div className="container">
                 <div className="center fade-in">
                     <span className="sub-head">History</span>
@@ -88,7 +88,7 @@ const About = () => {
                     <div className="timeline-item fade-up delay-1">
                         <div className="timeline-date">2015</div>
                         <div className="timeline-content">
-                            <h3>Independence</h3>
+                            <h3>Stand Alone</h3>
                             <p>Nisaa obtained its official non-profit status. We firmly believe that a program led by Africans is the most effective way to tackle gender-based violence in our communities.</p>
                         </div>
                     </div>
@@ -97,7 +97,8 @@ const About = () => {
         </section>
 
         {/* BOARD OF DIRECTORS */}
-        <section className="section-padding">
+        {/* ADJUSTMENT 1: Added paddingBottom: '20px' to reduce space after the board section */}
+        <section className="section-padding" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
             <div className="container">
                 <div className="center fade-in">
                     <span className="sub-head">Governance</span>
@@ -112,16 +113,13 @@ const About = () => {
                     </div>
                     <div className="board-card fade-up delay-1">
                         <div className="board-icon">N</div>
-                        <div><h4>Naomi Uweru</h4><span className="board-role">Steering Committee</span></div>
+                        <div><h4>Nadia La Fontant</h4><span className="board-role">Steering Committee</span></div>
                     </div>
                     <div className="board-card fade-up delay-1">
                         <div className="board-icon">M</div>
                         <div><h4>Meredith Bell</h4><span className="board-role">Steering Committee</span></div>
                     </div>
-                    <div className="board-card fade-up delay-1">
-                        <div className="board-icon">K</div>
-                        <div><h4>Kouthar Ayatt</h4><span className="board-role">Steering Committee</span></div>
-                    </div>
+                    
                     <div className="board-card fade-up delay-1">
                         <div className="board-icon">A</div>
                         <div><h4>Anne Cherop</h4><span className="board-role">Steering Committee</span></div>
@@ -131,7 +129,8 @@ const About = () => {
         </section>
 
         {/* STAFF TEAM */}
-        <section className="section-padding bg-white">
+        {/* ADJUSTMENT 2: Added paddingTop: '20px' to pull it closer to the board section */}
+        <section className="section-padding bg-white" style={{ paddingTop: '20px' }}>
             <div className="container">
                 <div className="center fade-in">
                     <span className="sub-head">The Team</span>
@@ -191,14 +190,7 @@ const About = () => {
                         </div>
                     </div>
 
-                    <div className="team-card fade-up">
-                        <div className="avatar-placeholder purple-bg">WG</div>
-                        <div className="team-info">
-                            <h3>Wangui Gathua</h3>
-                            <span className="role">Multilingual Advocate</span>
-                            <p>Iowa City</p>
-                        </div>
-                    </div>
+
 
                     <div className="team-card fade-up">
                         <div className="avatar-placeholder sage-bg">EE</div>
@@ -212,7 +204,7 @@ const About = () => {
         </section>
       </div>
 
-    </PageTransition> /* <--- WRAPPER ENDS HERE */
+    </PageTransition>
   );
 };
 

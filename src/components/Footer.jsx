@@ -38,12 +38,19 @@ const Footer = () => {
                     <Link to="/contact">Partner with us</Link>
                 </div>
 
+                {/* --- UPDATED CONTACT SECTION --- */}
                 <div className="f-col contact-col">
                     <h4>Contact Us</h4>
-                    <p><i className="fas fa-map-marker-alt"></i> 4944 Franklin Ave, Des Moines</p>
-                    <p><i className="fas fa-phone"></i> 319-338-7617</p>
-                    <p><i className="fas fa-envelope"></i> info@nisaa-afs.org</p>
+                    <p style={{ display: 'flex', gap: '10px' }}>
+                        <i className="fas fa-map-marker-alt" style={{ marginTop: '5px' }}></i> 
+                        <span>4944 Franklin Avenue, Suite P<br />Des Moines, IA 50310</span>
+                    </p>
+                    <p><i className="fas fa-phone"></i> 515-255-5430</p>
+                    <p><i className="fas fa-life-ring"></i> Helpline: 1844-269-6203</p>
+                    <p><i className="fas fa-fax"></i> Fax: 515-255-4517</p>
+                    <p><i className="fas fa-envelope"></i> Contact@nisaa-afs.org</p>
                 </div>
+                {/* ------------------------------- */}
             </div>
 
             <div className="footer-bottom">

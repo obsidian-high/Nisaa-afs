@@ -17,7 +17,7 @@ import Donate from './pages/Donate';
 import GetInvolved from './pages/GetInvolved';
 import Gala from './pages/Blog/Gala';
 import DVAwareness from './pages/Blog/DVAwareness'; // <--- Import the file
-
+import Shop from './pages/Shop'; // <--- 1. Import your shop file here (adjust path if needed)
 function App() {
   return (
     <Router>
@@ -39,6 +39,7 @@ function App() {
           <Route path="/get-involved" element={<GetInvolved />} />
           <Route path="/blog/gala" element={<Gala />} />
           <Route path="/blog/dv-awareness" element={<DVAwareness />} />
+          <Route path="/shop" element={<Shop />} />
         </Routes>
         
         {/* The Real Footer Component */}

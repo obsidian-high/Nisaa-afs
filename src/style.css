@@ -2157,3 +2157,278 @@ body {
     font-weight: 700;
 }
 
+/* --- SHOP BUTTON IN NAVBAR --- */
+.shop-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+  color: #4A2C4A; /* Brand Purple */
+  font-weight: 700;
+  border: 2px solid #4A2C4A;
+  padding: 8px 20px;
+  border-radius: 50px; /* Rounded pill shape */
+  transition: all 0.3s ease;
+  margin-right: 10px; /* Space between Shop and Donate */
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.shop-nav-btn i {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Hover Effect */
+.shop-nav-btn:hover {
+  background-color: #4A2C4A;
+  color: #fff !important; /* Force white text on hover */
+}
+
+.shop-nav-btn:hover i {
+  color: #fff;
+  transform: rotate(-10deg); /* Cute little tilt animation */
+}
+
+/* MOBILE FIX: Make sure it aligns nicely on phones */
+@media (max-width: 768px) {
+  .shop-nav-btn {
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 80%; /* Make it wide on mobile menu */
+    justify-content: center;
+  }
+}
+
+/* --- NEW SHOP ICON STYLES --- */
+
+/* Wrapper to help position it if needed */
+.nav-extras {
+    display: flex;
+    align-items: center;
+    /* Pushes it away from the center nav island */
+    margin-left: 20px; 
+    /* Pushes it away from the Donate button */
+    margin-right: 15px; 
+}
+
+.shop-icon-btn {
+    font-size: 1.4rem; /* Size of the bag */
+    color: #4a2c45;    /* Your brand Deep Purple */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    
+    /* Optional: A subtle circle background to make it pop */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    backdrop-filter: blur(5px);
+}
+
+.shop-icon-btn:hover {
+    color: #8da399;    /* Your brand Sage Green on hover */
+    transform: translateY(-2px); /* Slight float up */
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Mobile Adjustment: Hide strictly the icon on mobile menu if space is tight */
+@media (max-width: 900px) {
+    .nav-extras {
+        display: none;
+    }
+}
+
+/* --- CURIO SHOP & RIGHT NAV STYLES --- */
+.nav-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Space between Curio Shop and Donate button */
+    margin-left: auto; /* Pushes everything to the right */
+}
+
+.curio-btn {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #4a2c45; 
+    transition: all 0.3s ease;
+    line-height: 1; 
+}
+
+.curio-btn i {
+    font-size: 1.4rem;
+    margin-bottom: 5px; 
+}
+
+.curio-text {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: sans-serif; 
+}
+
+.curio-btn:hover {
+    color: #8da399; 
+    transform: translateY(-2px);
+}
+
+/* =======================================================
+   FINAL MOBILE: STICKY HEADER + LIFTED HAMBURGER
+   ======================================================= */
+@media screen and (max-width: 960px) {
+
+    /* --- 1. HEADER CONTAINER (STICKY & WHITE) --- */
+    .nav-container {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 10000 !important;
+        
+        background: white !important; 
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        
+        padding: 0 25px !important; 
+        height: 90px !important;    
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important; 
+    }
+
+    /* --- 2. LOGO (Centered vertically) --- */
+    .logo {
+        display: flex !important;
+        align-items: center !important;
+        height: 100% !important; 
+        flex-grow: 0 !important;
+    }
+
+    .logo img {
+        height: 60px !important; 
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        object-fit: contain;
+    }
+
+    /* --- 3. HAMBURGER (Nudged Up) --- */
+    .hamburger {
+        display: flex !important;   
+        align-items: center !important;
+        justify-content: flex-end !important;
+        
+        font-size: 2.8rem !important; 
+        color: #4A2C4A !important;
+        
+        width: 50px !important;       
+        height: 50px !important;      
+        line-height: normal !important;
+        cursor: pointer;
+        z-index: 10001 !important;
+        
+        /* THE LIFT FIX: Nudge it up by 5 pixels */
+        transform: translateY(-5px) !important; 
+        margin: 0 !important; 
+    }
+    
+    .hamburger * {
+        color: #4A2C4A !important;
+    }
+
+    /* --- 4. RIGHT SIDE WRAPPER --- */
+    .nav-right-actions {
+        display: flex !important;
+        align-items: center !important;
+        height: 100% !important;
+        min-width: 50px !important;
+    }
+
+    /* --- 5. THE MENU (Purple Box) --- */
+    .nav-island.active {
+        position: fixed !important;
+        top: 95px !important; 
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        
+        width: 85% !important;
+        height: auto !important;
+        max-height: 80vh !important;
+        
+        background: #4A2C4A !important; 
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 25px !important;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+        
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 30px 0 !important;
+        z-index: 9999 !important;
+        overflow-y: auto !important;
+    }
+
+    /* LINKS */
+    .nav-island.active a {
+        font-size: 1.2rem !important;
+        color: white !important;
+        padding: 15px 0 !important;
+        width: 100% !important;
+        text-align: center !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        background: transparent !important;
+        text-decoration: none !important;
+    }
+
+    /* --- 6. GOLD DONATE BUTTON --- */
+    .nav-island.active a.mobile-only-donate {
+        display: block !important;
+        margin-top: 25px !important;
+        background-color: #C5A059 !important; 
+        color: #4A2C4A !important;            
+        padding: 15px 45px !important;
+        border-radius: 50px !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        border: none !important;
+        width: auto !important; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+    }
+
+    /* --- 7. FLOATING SHOP BUTTON --- */
+    .curio-btn {
+        position: fixed !important;
+        bottom: 30px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50% !important;
+        background: #4A2C4A !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000 !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    
+    .curio-btn i {
+        font-size: 1.5rem !important;
+        color: white !important;
+        margin: 0 !important;
+    }
+
+    /* Hide extra elements */
+    .curio-text, .nav-island, .desktop-donate { 
+        display: none !important; 
+    }
+}

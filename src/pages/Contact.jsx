@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import PageTransition from '../components/PageTransition'; // <--- IMPORT ADDED
+import PageTransition from '../components/PageTransition';
 
 const Contact = () => {
   // --- SCROLL ANIMATION LOGIC ---
   useEffect(() => {
-    window.scrollTo(0, 0); // Start at top of page
+    window.scrollTo(0, 0);
   }, []);
 
   return (
-    <PageTransition> {/* <--- WRAPPER STARTS HERE */}
+    <PageTransition>
       
       <div className="contact-page">
         {/* HERO SECTION */}
@@ -22,6 +22,7 @@ const Contact = () => {
         {/* CONTACT FORM & INFO SECTION */}
         <section className="section-padding bg-white" style={{ paddingTop: '0px', marginTop: '-80px'}}>
           <div className="container">
+              {/* This wrapper holds the Left (Info) and Right (Form) side-by-side */}
               <div className="contact-wrapper">
                   
                   {/* LEFT SIDE: INFO */}
@@ -33,7 +34,8 @@ const Contact = () => {
                           <i className="fas fa-map-marker-alt"></i>
                           <div>
                               <strong>Address:</strong><br />
-                              4944 Franklin Ave, Des Moines, IA
+                              4944 Franklin Avenue, Suite P<br />
+                              Des Moines, IA 50310
                           </div>
                       </div>
 
@@ -41,7 +43,9 @@ const Contact = () => {
                           <i className="fas fa-phone-alt"></i>
                           <div>
                               <strong>Phone:</strong><br />
-                              319-338-7617
+                              Office: 515-255-5430<br />
+                              <span style={{ color: '#d9534f', fontWeight: 'bold' }}>Helpline: 1844-269-6203</span><br />
+                              <span style={{ fontSize: '0.9em', color: '#666' }}>Fax: 515-255-4517</span>
                           </div>
                       </div>
 
@@ -49,14 +53,14 @@ const Contact = () => {
                           <i className="fas fa-envelope"></i>
                           <div>
                               <strong>Email:</strong><br />
-                              info@nisaa-afs.org
+                              Contact@nisaa-afs.org
                           </div>
                       </div>
 
-                      {/* GOOGLE MAP */}
+                      {/* GOOGLE MAP - Updated with working link */}
                       <div className="map-container">
                           <iframe 
-                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.834465839063!2d-93.68261892348126!3d41.60207438012626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87ee9eb3687529a3%3A0xc0236441416e0538!2s4944%20Franklin%20Ave%2C%20Des%20Moines%2C%20IA%2050310!5e0!3m2!1sen!2sus!4v1709668000000!5m2!1sen!2sus" 
+                              src="https://maps.google.com/maps?q=4944%20Franklin%20Ave%2C%20Des%20Moines%2C%20IA%2050310&t=&z=15&ie=UTF8&iwloc=&output=embed"
                               width="100%" 
                               height="250" 
                               style={{ border: 0 }} 
@@ -71,7 +75,7 @@ const Contact = () => {
                   {/* RIGHT SIDE: FORM */}
                   <div className="contact-form-box">
                       <h3>Send a Message</h3>
-                      <form action="#" method="POST">
+                      <form action="https://formspree.io/f/xojjqwqa" method="POST">
                           <div className="form-group">
                               <label>Name</label>
                               <input type="text" placeholder="Your Full Name" required />
@@ -99,12 +103,12 @@ const Contact = () => {
                       </form>
                   </div>
 
-              </div>
+              </div> {/* End contact-wrapper */}
           </div>
         </section>
       </div>
 
-    </PageTransition> /* <--- WRAPPER ENDS HERE */
+    </PageTransition>
   );
 };
 
