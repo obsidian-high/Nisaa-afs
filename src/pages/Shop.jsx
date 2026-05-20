@@ -52,7 +52,7 @@ const Shop = () => {
         )}
         
         {/* HERO */}
-        <div className="page-hero" style={{ paddingTop: '120px', paddingBottom: '10px', height: 'auto', minHeight: 'unset' }}>
+        <div className="page-hero" style={{ paddingTop: '120px', paddingBottom: '50px', height: 'auto', minHeight: 'unset' }}>
             <div className="container center-text">
                 <span className="sub-head" style={{ color: '#BCA88E' }}>Shop for a Cause</span>
                 <h1>Empowerment <br /><em>Marketplace</em></h1>
