@@ -28,7 +28,7 @@ const TrackOrder = () => {
       const { data, error } = await supabase
         .from('orders')
         .select('*')
-        .eq('id', orderId.trim())
+        .eq('order_code', orderId.trim())
         .single();
 
       if (error || !data) {
@@ -88,7 +88,7 @@ const TrackOrder = () => {
               <div className="track-result">
                 <div className="track-result-header">
                   <div>
-                    <h2>Order #{order.id}</h2>
+                    <h2>Order {order.order_code}</h2>
                     <p>Placed on {new Date(order.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                   </div>
                   <span className={`status-badge ${order.status}`}>

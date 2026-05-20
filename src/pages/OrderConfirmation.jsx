@@ -18,7 +18,7 @@ const OrderConfirmation = () => {
       const { data, error } = await supabase
         .from('orders')
         .select('*')
-        .eq('id', orderId)
+        .eq('order_code', orderId)
         .single();
       if (error) throw error;
       setOrder(data);
@@ -74,7 +74,7 @@ const OrderConfirmation = () => {
 
               <div className="order-header">
                 <div>
-                  <h2>Order #{order.id}</h2>
+                  <h2>Order {order.order_code}</h2>
                   <p>Placed on {new Date(order.created_at).toLocaleDateString()}</p>
                 </div>
                 <span className={`status-badge ${order.status}`}>
@@ -137,7 +137,7 @@ const OrderConfirmation = () => {
                 </p>
                 <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
                   <Link to={`/track-order`} className="btn-donate" style={{ textDecoration: 'none' }}>
-                    <i className="fas fa-truck" style={{ marginRight: '8px' }}></i>Track Order #{order.id}
+                    <i className="fas fa-truck" style={{ marginRight: '8px' }}></i>Track Order {order.order_code}
                   </Link>
                   <Link to="/shop" className="btn-outline">Continue Shopping</Link>
                 </div>

@@ -32,11 +32,21 @@ const Checkout = () => {
   const shipping = cart.reduce((sum, item) => sum + (4 + item.quantity), 0);
   const total = (getCartTotal() + shipping).toFixed(2);
 
+  const generateOrderCode = () => {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let code = 'NSA-';
+    for (let i = 0; i < 6; i++) {
+      code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return code;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       const orderData = {
+        order_code: generateOrderCode(),
         customer_name: formData.fullName,
         customer_email: formData.email,
         customer_phone: formData.phone,
@@ -50,7 +60,7 @@ const Checkout = () => {
       };
       const { data, error } = await supabase.from('orders').insert([orderData]).select();
       if (error) throw error;
-      setSavedOrderId(data[0].id);
+      setSavedOrderId(data[0].order_code);
       setStep(2);
     } catch (error) {
       console.error('Error saving order:', error);

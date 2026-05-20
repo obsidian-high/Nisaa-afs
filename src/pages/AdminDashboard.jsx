@@ -143,7 +143,7 @@ const AdminDashboard = () => {
                   <div key={order.id} className="order-card">
                     <div className="order-card-header">
                       <div>
-                        <h3>Order #{order.id}</h3>
+                        <h3>Order {order.order_code || `#${order.id}`}</h3>
                         <p>{new Date(order.created_at).toLocaleString()}</p>
                       </div>
                       <span className={`status-badge ${order.status}`}>{order.status.toUpperCase()}</span>
