@@ -24,7 +24,7 @@ const Shop = () => {
       category: 'Merch',
       title: 'Nisaa "Empower" Tote',
       price: '$20.00',
-      image: 'Nisaa_Tote_Bag.png',
+      image: '/Nisaa_Tote_Bag.png',
       desc: '100% Cotton heavy-duty tote bag with Nisaa logo.'
     },
     {
