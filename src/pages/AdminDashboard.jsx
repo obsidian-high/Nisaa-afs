@@ -112,22 +112,25 @@ const AdminDashboard = () => {
     <PageTransition>
       <div className="admin-dashboard">
         <div className="page-hero" style={{ paddingTop: '120px', paddingBottom: '40px' }}>
-          <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <h1>Admin Dashboard</h1>
-              <p>Manage your orders and track sales</p>
-            </div>
-            <button
-              onClick={() => { sessionStorage.removeItem('nisaa-admin'); setAuthenticated(false); }}
-              style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', color: 'white', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px' }}
-            >
-              <i className="fas fa-sign-out-alt"></i> Sign Out
-            </button>
+          <div className="container">
+            <h1>Admin Dashboard</h1>
+            <p>Manage your orders and track sales</p>
           </div>
         </div>
 
         <section className="section-padding">
           <div className="container">
+            {/* Sign out */}
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '30px' }}>
+              <button
+                onClick={() => { sessionStorage.removeItem('nisaa-admin'); setAuthenticated(false); }}
+                style={{ background: 'white', border: '2px solid #e74c3c', color: '#e74c3c', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px', transition: '0.3s' }}
+                onMouseOver={(e) => { e.currentTarget.style.background = '#e74c3c'; e.currentTarget.style.color = 'white'; }}
+                onMouseOut={(e) => { e.currentTarget.style.background = 'white'; e.currentTarget.style.color = '#e74c3c'; }}
+              >
+                <i className="fas fa-sign-out-alt"></i> Sign Out
+              </button>
+            </div>
             <div className="stats-grid">
               <div className="stat-card"><i className="fas fa-shopping-cart"></i><div><h3>{stats.total}</h3><p>Total Orders</p></div></div>
               <div className="stat-card"><i className="fas fa-clock"></i><div><h3>{stats.pending}</h3><p>Pending</p></div></div>
