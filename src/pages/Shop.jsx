@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import { useCart } from '../context/CartContext';
 
@@ -51,13 +52,33 @@ const Shop = () => {
         )}
         
         {/* HERO */}
-        {/* GAP ADJUSTMENT 1: Adjusted padding to remove extra height and gap */}
         <div className="page-hero" style={{ paddingTop: '120px', paddingBottom: '10px', height: 'auto', minHeight: 'unset' }}>
             <div className="container center-text">
                 <span className="sub-head" style={{ color: '#BCA88E' }}>Shop for a Cause</span>
                 <h1>Empowerment <br /><em>Marketplace</em></h1>
-                {/* GAP ADJUSTMENT 2: Reduced margin around the paragraph */}
-               
+                <Link 
+                    to="/track-order"
+                    style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        marginTop: '20px',
+                        padding: '10px 24px',
+                        background: 'rgba(255,255,255,0.15)',
+                        border: '1px solid rgba(255,255,255,0.4)',
+                        borderRadius: '50px',
+                        color: 'white',
+                        textDecoration: 'none',
+                        fontSize: '0.9rem',
+                        fontWeight: '600',
+                        backdropFilter: 'blur(5px)',
+                        transition: 'all 0.3s ease'
+                    }}
+                    onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.25)'}
+                    onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.15)'}
+                >
+                    <i className="fas fa-truck"></i> Track Your Order
+                </Link>
             </div>
         </div>
 
