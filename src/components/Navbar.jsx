@@ -40,8 +40,11 @@ const Navbar = () => {
             Donate
           </Link>
           
-          <div className="hamburger" onClick={() => setIsOpen(!isOpen)}>
-            &#9776;
+          {/* Animated Hamburger / X */}
+          <div className={`hamburger ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
 
