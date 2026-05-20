@@ -24,6 +24,7 @@ import Shop from './pages/Shop';
 import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
 import AdminDashboard from './pages/AdminDashboard';
+import TrackOrder from './pages/TrackOrder';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
               <Route path="/shop" element={<Shop />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
+              <Route path="/track-order" element={<TrackOrder />} />
               <Route path="/admin" element={<AdminDashboard />} />
             </Routes>
             

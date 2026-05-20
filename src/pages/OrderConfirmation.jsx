@@ -135,7 +135,12 @@ const OrderConfirmation = () => {
                   <i className="fas fa-info-circle"></i>
                   We'll notify you when your order ships to {order.shipping_address}!
                 </p>
-                <Link to="/shop" className="btn-outline">Continue Shopping</Link>
+                <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                  <Link to={`/track-order`} className="btn-donate" style={{ textDecoration: 'none' }}>
+                    <i className="fas fa-truck" style={{ marginRight: '8px' }}></i>Track Order #{order.id}
+                  </Link>
+                  <Link to="/shop" className="btn-outline">Continue Shopping</Link>
+                </div>
               </div>
 
             </div>
