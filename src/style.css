@@ -3656,6 +3656,7 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.12);
     z-index: 10;
     min-width: 140px;
+    display: none; /* hidden on desktop */
 }
 
 .arch-card .icon {
@@ -3677,19 +3678,18 @@ body {
     margin: 0;
 }
 
-/* Top-right of the image */
 .arch-card-top {
     top: 60px;
-    right: -30px;
+    right: -20px;
 }
 
-/* Bottom-left of the image */
 .arch-card-bottom {
     bottom: 80px;
-    left: -30px;
+    left: -20px;
 }
 
+/* Show on image, hide sidebar cards on mobile */
 @media (max-width: 900px) {
-    .arch-card-top { right: -10px; top: 40px; }
-    .arch-card-bottom { left: -10px; bottom: 60px; }
+    .arch-card { display: block; }
+    .desktop-only-cards { display: none !important; }
 }

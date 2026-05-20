@@ -90,13 +90,26 @@ const Home = () => {
               </div>
               <div className="floating-badge"><span>Est. 2014</span></div>
 
-              {/* Floating cards ON the image */}
+              {/* Floating cards ON the image - mobile only */}
               <div className="arch-card arch-card-top float-slow">
                   <div className="icon">♥</div>
                   <h3>Advocacy</h3>
                   <p>Culturally specific support.</p>
               </div>
               <div className="arch-card arch-card-bottom float-fast">
+                  <div className="icon">☀</div>
+                  <h3>Hope</h3>
+                  <p>Building safer futures.</p>
+              </div>
+          </div>
+
+          <div className="content-right fade-in desktop-only-cards">
+              <div className="ice-card float-slow">
+                  <div className="icon">♥</div>
+                  <h3>Advocacy</h3>
+                  <p>Culturally specific support.</p>
+              </div>
+              <div className="ice-card float-fast">
                   <div className="icon">☀</div>
                   <h3>Hope</h3>
                   <p>Building safer futures.</p>
