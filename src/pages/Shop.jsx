@@ -56,57 +56,51 @@ const Shop = () => {
             <div className="container center-text">
                 <span className="sub-head" style={{ color: '#BCA88E' }}>Shop for a Cause</span>
                 <h1>Empowerment <br /><em>Marketplace</em></h1>
-                <Link 
-                    to="/track-order"
-                    style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        marginTop: '20px',
-                        padding: '10px 24px',
-                        background: 'rgba(255,255,255,0.15)',
-                        border: '1px solid rgba(255,255,255,0.4)',
-                        borderRadius: '50px',
-                        color: 'white',
-                        textDecoration: 'none',
-                        fontSize: '0.9rem',
-                        fontWeight: '600',
-                        backdropFilter: 'blur(5px)',
-                        transition: 'all 0.3s ease'
-                    }}
-                    onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.25)'}
-                    onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.15)'}
-                >
-                    <i className="fas fa-truck"></i> Track Your Order
-                </Link>
             </div>
         </div>
 
         {/* SHOP GRID */}
-        {/* GAP ADJUSTMENT 3: paddingTop='20px' pulls this section closer to the hero */}
         <section className="section-padding" style={{ background: '#fff', paddingTop: '20px' }}>
             <div className="container">
-                
-               {/* Intro Text */}
-<div style={{ textAlign: 'center', marginBottom: '40px' }}>
-    
-    {/* UPDATED STYLE: Cinzel Font + All Caps + Bigger Size */}
-    <h2 style={{ 
-        color: '#4A2C4A', 
-        fontFamily: '"Cinzel", serif', 
-        textTransform: 'uppercase', // <--- This forces CAPITAL LETTERS
-        letterSpacing: '2px',       // Adds elegance like the hero
-        fontSize: '2.2rem',         // Makes the text physically bigger
-        fontWeight: '500',
-        marginBottom: '10px'
-    }}>
-        Curios & Collection
-    </h2>
-    
-    <p style={{ color: '#666', fontSize: '1.1rem' }}>
-        Browse handmade items by our clients and official Nisaa merchandise.
-    </p>
-</div>
+
+               {/* Intro Text + Track Button */}
+               <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+                    <h2 style={{ 
+                        color: '#4A2C4A', 
+                        fontFamily: '"Cinzel", serif', 
+                        textTransform: 'uppercase',
+                        letterSpacing: '2px',
+                        fontSize: '2.2rem',
+                        fontWeight: '500',
+                        marginBottom: '10px'
+                    }}>
+                        Curios & Collection
+                    </h2>
+                    <p style={{ color: '#666', fontSize: '1.1rem', marginBottom: '20px' }}>
+                        Browse handmade items by our clients and official Nisaa merchandise.
+                    </p>
+                    <Link 
+                        to="/track-order"
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            padding: '10px 24px',
+                            background: 'transparent',
+                            border: '2px solid #4A2C4A',
+                            borderRadius: '50px',
+                            color: '#4A2C4A',
+                            textDecoration: 'none',
+                            fontSize: '0.9rem',
+                            fontWeight: '600',
+                            transition: 'all 0.3s ease'
+                        }}
+                        onMouseOver={(e) => { e.currentTarget.style.background = '#4A2C4A'; e.currentTarget.style.color = 'white'; }}
+                        onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#4A2C4A'; }}
+                    >
+                        <i className="fas fa-truck"></i> Track Your Order
+                    </Link>
+                </div>
 
                 {/* Grid */}
                 <div style={{ 
