@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import PageTransition from '../components/PageTransition';
+import { useCart } from '../context/CartContext';
 
 const Shop = () => {
+  const { addToCart, getCartCount, getCartTotal, setIsCartOpen } = useCart();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,7 +24,7 @@ const Shop = () => {
       category: 'Merch',
       title: 'Nisaa "Empower" Tote',
       price: '$20.00',
-      image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop',
+      image: 'Nisaa_Tote_Bag.png',
       desc: '100% Cotton heavy-duty tote bag with Nisaa logo.'
     },
     {
@@ -37,6 +40,15 @@ const Shop = () => {
   return (
     <PageTransition>
       <div className="shop-page">
+        
+        {/* Floating Cart Button */}
+        {getCartCount() > 0 && (
+          <button className="floating-cart-btn" onClick={() => setIsCartOpen(true)}>
+            <i className="fas fa-shopping-cart"></i>
+            <span className="cart-count">{getCartCount()}</span>
+            <span className="cart-total">${getCartTotal().toFixed(2)}</span>
+          </button>
+        )}
         
         {/* HERO */}
         {/* GAP ADJUSTMENT 1: Adjusted padding to remove extra height and gap */}
@@ -82,7 +94,9 @@ const Shop = () => {
                     gap: '40px' 
                 }}>
                     {products.map((item) => (
-                        <div key={item.id} style={{ 
+                        <div key={item.id} 
+                            onClick={() => addToCart(item)}
+                            style={{ 
                             border: '1px solid #eee', 
                             borderRadius: '15px', 
                             overflow: 'hidden',
@@ -121,16 +135,19 @@ const Shop = () => {
                                 </p>
                                 
                                 {/* Button */}
-                                <button style={{ 
-                                    width: '100%', 
-                                    padding: '12px', 
-                                    background: '#4A2C4A', 
-                                    color: 'white', 
-                                    border: 'none', 
-                                    borderRadius: '8px', 
-                                    cursor: 'pointer',
-                                    fontWeight: 'bold'
-                                }}>
+                                <button 
+                                    onClick={() => addToCart(item)}
+                                    style={{ 
+                                        width: '100%', 
+                                        padding: '12px', 
+                                        background: '#4A2C4A', 
+                                        color: 'white', 
+                                        border: 'none', 
+                                        borderRadius: '8px', 
+                                        cursor: 'pointer',
+                                        fontWeight: 'bold'
+                                    }}
+                                >
                                     Add to Cart
                                 </button>
                             </div>

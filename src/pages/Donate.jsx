@@ -7,14 +7,13 @@ const Donate = () => {
   const ORGANIZATION_NAME = "Obsidian";
 
   // State
-  const [amount, setAmount] = useState(50); // Default to $50
+  const [amount, setAmount] = useState(50);
   const [customAmount, setCustomAmount] = useState('');
-  const [donorName, setDonorName] = useState(''); // <--- NEW NAME STATE
+  const [donorName, setDonorName] = useState('');
+  const [donorMessage, setDonorMessage] = useState('');
+  const [showThankYou, setShowThankYou] = useState(false);
 
-  // Scroll to top on load
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // Scroll to top on load - now handled in the combined useEffect above
 
   // Handle Button Clicks ($25, $50, $100)
   const handleAmountClick = (val) => {
@@ -30,14 +29,56 @@ const Donate = () => {
 
   // --- LOGIC TO BUILD THE PAYPAL LINK ---
   const finalAmount = customAmount ? customAmount : amount;
-  
-  // Added &custom=${donorName} so the name appears in your PayPal transaction logs
-  const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=${PAYPAL_EMAIL}&item_name=Donation+to+${ORGANIZATION_NAME}&currency_code=USD&amount=${finalAmount}&custom=${donorName}`;
+  const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=${PAYPAL_EMAIL}&item_name=Donation+to+${ORGANIZATION_NAME}&currency_code=USD&amount=${finalAmount}&custom=${encodeURIComponent(donorName)}&return=${encodeURIComponent(window.location.href + '?thankyou=1')}&cancel_return=${encodeURIComponent(window.location.href)}`;
+
+  // Check if returning from PayPal
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (window.location.search.includes('thankyou=1')) {
+      setShowThankYou(true);
+      // Clean up URL
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, []);
 
   return (
     <PageTransition> 
-      
       <div className="donate-page">
+
+        {/* THANK YOU OVERLAY */}
+        {showThankYou && (
+          <div className="thankyou-overlay">
+            <div className="thankyou-card">
+              <div className="thankyou-icon">
+                <i className="fas fa-heart"></i>
+              </div>
+              <h1>Thank You{donorName ? `, ${donorName}` : ''}!</h1>
+              <p className="thankyou-sub">Your generosity means the world to us and to every family we serve.</p>
+              <div className="thankyou-divider"></div>
+              <p className="thankyou-body">
+                Your donation to Nisaa African Family Services is more than a gift — it is a lifeline. 
+                Because of people like you, survivors find safety, families heal, and children grow up 
+                knowing they are protected and loved.
+              </p>
+              <p className="thankyou-body">
+                Every dollar you've given today will go directly toward emergency shelter, legal aid, 
+                and culturally specific counseling for those who need it most. You are part of this community 
+                of healing, and we are deeply grateful.
+              </p>
+              {donorMessage && (
+                <div className="thankyou-message-echo">
+                  <i className="fas fa-quote-left"></i>
+                  <p>"{donorMessage}"</p>
+                </div>
+              )}
+              <p className="thankyou-sign">With gratitude,<br /><strong>The Nisaa Family</strong></p>
+              <button className="thankyou-close" onClick={() => setShowThankYou(false)}>
+                Continue to Site
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* HERO SECTION */}
         <header className="donate-hero">
             <div className="container">
@@ -140,6 +181,27 @@ const Donate = () => {
                                             fontSize: '1rem',
                                             backgroundColor: '#fdfdfd',
                                             outline: 'none'
+                                        }}
+                                    />
+                                </div>
+
+                                {/* MESSAGE INPUT */}
+                                <div style={{ marginBottom: '20px' }}>
+                                    <textarea
+                                        placeholder="Leave a message of support (optional)"
+                                        value={donorMessage}
+                                        onChange={(e) => setDonorMessage(e.target.value)}
+                                        rows="3"
+                                        style={{
+                                            width: '100%',
+                                            padding: '12px',
+                                            borderRadius: '8px',
+                                            border: '1px solid #ddd',
+                                            fontSize: '0.95rem',
+                                            backgroundColor: '#fdfdfd',
+                                            outline: 'none',
+                                            resize: 'none',
+                                            fontFamily: 'inherit'
                                         }}
                                     />
                                 </div>

@@ -1,9 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
+import ErrorBoundary from './ErrorBoundary';
 
 // Import Components
 import Navbar from './components/Navbar';
-import Footer from './components/Footer'; // <--- ADD THIS
+import Footer from './components/Footer';
+import CartSidebar from './components/CartSidebar';
 
 // Import Pages
 import Home from './pages/Home';
@@ -16,36 +19,44 @@ import Contact from './pages/Contact';
 import Donate from './pages/Donate';
 import GetInvolved from './pages/GetInvolved';
 import Gala from './pages/Blog/Gala';
-import DVAwareness from './pages/Blog/DVAwareness'; // <--- Import the file
-import Shop from './pages/Shop'; // <--- 1. Import your shop file here (adjust path if needed)
+import DVAwareness from './pages/Blog/DVAwareness';
+import Shop from './pages/Shop';
+import Checkout from './pages/Checkout';
+import OrderConfirmation from './pages/OrderConfirmation';
+import AdminDashboard from './pages/AdminDashboard';
+
 function App() {
   return (
-    <Router>
-      <div className="App">
-        {/* Navbar sits outside Routes so it's ALWAYS visible */}
-        <Navbar />
+    <ErrorBoundary>
+      <CartProvider>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <CartSidebar />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/gallery" element={<Gallery />} />
-          
-          {/* Placeholders */}
-          <Route path="/about" element={<About />} />
-          <Route path="/programs" element={<Programs />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/gala" element={<BlogGala />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/donate" element={<Donate />} />
-          <Route path="/get-involved" element={<GetInvolved />} />
-          <Route path="/blog/gala" element={<Gala />} />
-          <Route path="/blog/dv-awareness" element={<DVAwareness />} />
-          <Route path="/shop" element={<Shop />} />
-        </Routes>
-        
-        {/* The Real Footer Component */}
-        <Footer /> 
-      </div>
-    </Router>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/programs" element={<Programs />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/gala" element={<BlogGala />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/donate" element={<Donate />} />
+              <Route path="/get-involved" element={<GetInvolved />} />
+              <Route path="/blog/gala" element={<Gala />} />
+              <Route path="/blog/dv-awareness" element={<DVAwareness />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+            </Routes>
+            
+            <Footer /> 
+          </div>
+        </Router>
+      </CartProvider>
+    </ErrorBoundary>
   );
 }
 

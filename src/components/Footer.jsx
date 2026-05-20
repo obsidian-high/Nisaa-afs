@@ -61,15 +61,13 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* --- NEW SECTION: YOUR CLICKABLE LOGO (EMAIL) --- */}
-<div className="developer-credit">
-    <span>Designed by</span>
-    
-    {/* Replace with your actual email address */}
-    <a href="mailto:itsmeaidenj@email.com" className="dev-link">
-        <img src="/arden-logo.png" alt="Arden Design" className="dev-logo" />
-    </a>
-</div>
+            {/* DEVELOPER SECTION */}
+            <div className="developer-credit">
+                <span>Designed and developed by</span>
+                <a href="https://my-portfolio-f5fb.vercel.app/" target="_blank" rel="noopener noreferrer" className="dev-link">
+                    <img src="/arden-logo.png" alt="Arden Design" className="dev-logo" />
+                </a>
+            </div>
 
         </div>
     </footer>
