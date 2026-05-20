@@ -112,9 +112,17 @@ const AdminDashboard = () => {
     <PageTransition>
       <div className="admin-dashboard">
         <div className="page-hero" style={{ paddingTop: '120px', paddingBottom: '40px' }}>
-          <div className="container">
-            <h1>Admin Dashboard</h1>
-            <p>Manage your orders and track sales</p>
+          <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div>
+              <h1>Admin Dashboard</h1>
+              <p>Manage your orders and track sales</p>
+            </div>
+            <button
+              onClick={() => { sessionStorage.removeItem('nisaa-admin'); setAuthenticated(false); }}
+              style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', color: 'white', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px' }}
+            >
+              <i className="fas fa-sign-out-alt"></i> Sign Out
+            </button>
           </div>
         </div>
 
