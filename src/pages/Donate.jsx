@@ -3,7 +3,7 @@ import PageTransition from '../components/PageTransition';
 
 const Donate = () => {
   // --- CONFIGURATION ---
-  const PAYPAL_EMAIL = "itsmeaidenj@gmail.com"; 
+  const PAYPAL_EMAIL = import.meta.env.VITE_PAYPAL_EMAIL || "itsmeaidenj@gmail.com";
   const ORGANIZATION_NAME = "Obsidian";
 
   // State
