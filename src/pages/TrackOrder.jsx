@@ -25,11 +25,16 @@ const TrackOrder = () => {
     setOrder(null);
 
     try {
-      const { data, error } = await supabase
-        .from('orders')
-        .select('*')
-        .eq('order_code', orderId.trim())
-        .single();
+      // Try order_code first, then fall back to numeric id
+      let query = supabase.from('orders').select('*');
+      
+      if (isNaN(orderId.trim())) {
+        query = query.eq('order_code', orderId.trim().toUpperCase());
+      } else {
+        query = query.eq('id', orderId.trim());
+      }
+
+      const { data, error } = await query.single();
 
       if (error || !data) {
         setError('No order found with that number. Please check and try again.');
@@ -70,7 +75,7 @@ const TrackOrder = () => {
                     type="text"
                     value={orderId}
                     onChange={(e) => setOrderId(e.target.value)}
-                    placeholder="Enter your order number (e.g. 12)"
+                    placeholder="Enter your order code (e.g. NSA-7X4K2M) or order number"
                     required
                   />
                 </div>
@@ -88,7 +93,7 @@ const TrackOrder = () => {
               <div className="track-result">
                 <div className="track-result-header">
                   <div>
-                    <h2>Order {order.order_code}</h2>
+                    <h2>Order {order.order_code || `#${order.id}`}</h2>
                     <p>Placed on {new Date(order.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                   </div>
                   <span className={`status-badge ${order.status}`}>
