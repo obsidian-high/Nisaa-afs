@@ -24,6 +24,14 @@ const TrackOrder = () => {
     setError('');
     setOrder(null);
 
+    // Validate input length and format
+    const cleaned = orderId.trim();
+    if (cleaned.length === 0 || cleaned.length > 50) {
+      setError('Please enter a valid order code or number.');
+      setLoading(false);
+      return;
+    }
+
     try {
       // Try order_code first, then fall back to numeric id
       let query = supabase.from('orders').select('*');
