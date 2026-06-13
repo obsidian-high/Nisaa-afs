@@ -2,51 +2,57 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../config/supabase';
 import PageTransition from '../components/PageTransition';
 
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
-
 const AdminDashboard = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
-  const [authenticated, setAuthenticated] = useState(
-    sessionStorage.getItem('nisaa-admin') === 'true'
-  );
-  const [passwordInput, setPasswordInput] = useState('');
+  const [session, setSession] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
-  const [attempts, setAttempts] = useState(0);
-  const [lockedUntil, setLockedUntil] = useState(null);
+  const [signingIn, setSigningIn] = useState(false);
+
+  // Check for existing session on mount
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setAuthLoading(false);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   useEffect(() => {
-    if (authenticated) fetchOrders();
-  }, [authenticated]);
+    if (session) fetchOrders();
+  }, [session]);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (lockedUntil && Date.now() < lockedUntil) {
-      const secondsLeft = Math.ceil((lockedUntil - Date.now()) / 1000);
-      setAuthError(`Too many attempts. Try again in ${secondsLeft} seconds.`);
-      return;
+    setSigningIn(true);
+    setAuthError('');
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      setAuthError('Invalid email or password.');
+      setPassword('');
     }
-    if (passwordInput === ADMIN_PASSWORD) {
-      sessionStorage.setItem('nisaa-admin', 'true');
-      setAuthenticated(true);
-      setAuthError('');
-      setAttempts(0);
-    } else {
-      const newAttempts = attempts + 1;
-      setAttempts(newAttempts);
-      setPasswordInput('');
-      if (newAttempts >= 5) {
-        const lockTime = Date.now() + 5 * 60 * 1000;
-        setLockedUntil(lockTime);
-        setAuthError('Too many failed attempts. Locked for 5 minutes.');
-      } else {
-        setAuthError(`Incorrect password. ${5 - newAttempts} attempt${5 - newAttempts === 1 ? '' : 's'} remaining.`);
-      }
-    }
+    setSigningIn(false);
+  };
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    setOrders([]);
   };
 
   const fetchOrders = async () => {
+    setLoading(true);
     try {
       const { data, error } = await supabase
         .from('orders')
@@ -75,26 +81,50 @@ const AdminDashboard = () => {
     }
   };
 
-  if (!authenticated) {
+  // Still checking auth state
+  if (authLoading) {
+    return (
+      <PageTransition>
+        <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <p>Loading...</p>
+        </div>
+      </PageTransition>
+    );
+  }
+
+  // Not logged in - show login form
+  if (!session) {
     return (
       <PageTransition>
         <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--cream-bg)' }}>
           <div style={{ background: 'white', padding: '50px 40px', borderRadius: '20px', boxShadow: '0 10px 40px rgba(0,0,0,0.08)', width: '100%', maxWidth: '400px', textAlign: 'center' }}>
             <i className="fas fa-lock" style={{ fontSize: '2.5rem', color: 'var(--deep-purple)', marginBottom: '20px' }}></i>
             <h2 style={{ fontFamily: 'var(--font-head)', color: 'var(--deep-purple)', marginBottom: '10px' }}>Admin Access</h2>
-            <p style={{ color: '#888', marginBottom: '30px', fontSize: '0.9rem' }}>Enter your password to continue</p>
+            <p style={{ color: '#888', marginBottom: '30px', fontSize: '0.9rem' }}>Sign in with your admin account</p>
             <form onSubmit={handleLogin}>
               <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                required
+                style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '8px', fontSize: '1rem', marginBottom: '12px', outline: 'none', boxSizing: 'border-box' }}
+              />
+              <input
                 type="password"
-                value={passwordInput}
-                onChange={(e) => setPasswordInput(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '8px', fontSize: '1rem', marginBottom: '15px', outline: 'none' }}
-                autoFocus
+                required
+                style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '8px', fontSize: '1rem', marginBottom: '15px', outline: 'none', boxSizing: 'border-box' }}
               />
               {authError && <p style={{ color: '#e74c3c', fontSize: '0.85rem', marginBottom: '15px' }}>{authError}</p>}
-              <button type="submit" style={{ width: '100%', padding: '14px', background: 'var(--deep-purple)', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', fontSize: '1rem', cursor: 'pointer' }}>
-                Enter Dashboard
+              <button
+                type="submit"
+                disabled={signingIn}
+                style={{ width: '100%', padding: '14px', background: 'var(--deep-purple)', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', fontSize: '1rem', cursor: 'pointer' }}
+              >
+                {signingIn ? 'Signing in...' : 'Sign In'}
               </button>
             </form>
           </div>
@@ -130,23 +160,23 @@ const AdminDashboard = () => {
         <div className="page-hero" style={{ paddingTop: '120px', paddingBottom: '40px' }}>
           <div className="container">
             <h1>Admin Dashboard</h1>
-            <p>Manage your orders and track sales</p>
+            <p>Signed in as {session.user.email}</p>
           </div>
         </div>
 
         <section className="section-padding">
           <div className="container">
-            {/* Sign out */}
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '30px' }}>
               <button
-                onClick={() => { sessionStorage.removeItem('nisaa-admin'); setAuthenticated(false); }}
-                style={{ background: 'white', border: '2px solid #e74c3c', color: '#e74c3c', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px', transition: '0.3s' }}
+                onClick={handleSignOut}
+                style={{ background: 'white', border: '2px solid #e74c3c', color: '#e74c3c', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px' }}
                 onMouseOver={(e) => { e.currentTarget.style.background = '#e74c3c'; e.currentTarget.style.color = 'white'; }}
                 onMouseOut={(e) => { e.currentTarget.style.background = 'white'; e.currentTarget.style.color = '#e74c3c'; }}
               >
                 <i className="fas fa-sign-out-alt"></i> Sign Out
               </button>
             </div>
+
             <div className="stats-grid">
               <div className="stat-card"><i className="fas fa-shopping-cart"></i><div><h3>{stats.total}</h3><p>Total Orders</p></div></div>
               <div className="stat-card"><i className="fas fa-clock"></i><div><h3>{stats.pending}</h3><p>Pending</p></div></div>
@@ -175,7 +205,6 @@ const AdminDashboard = () => {
                       </div>
                       <span className={`status-badge ${order.status}`}>{order.status.toUpperCase()}</span>
                     </div>
-
                     <div className="order-card-body">
                       <div className="order-customer">
                         <h4>Customer</h4>
@@ -198,7 +227,6 @@ const AdminDashboard = () => {
                         <p className="total-amount">${order.total_amount?.toFixed(2)}</p>
                       </div>
                     </div>
-
                     <div className="order-card-footer">
                       <select
                         value={order.status}
