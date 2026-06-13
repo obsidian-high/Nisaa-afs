@@ -13,6 +13,8 @@ const AdminDashboard = () => {
   );
   const [passwordInput, setPasswordInput] = useState('');
   const [authError, setAuthError] = useState('');
+  const [attempts, setAttempts] = useState(0);
+  const [lockedUntil, setLockedUntil] = useState(null);
 
   useEffect(() => {
     if (authenticated) fetchOrders();
@@ -20,13 +22,27 @@ const AdminDashboard = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    if (lockedUntil && Date.now() < lockedUntil) {
+      const secondsLeft = Math.ceil((lockedUntil - Date.now()) / 1000);
+      setAuthError(`Too many attempts. Try again in ${secondsLeft} seconds.`);
+      return;
+    }
     if (passwordInput === ADMIN_PASSWORD) {
       sessionStorage.setItem('nisaa-admin', 'true');
       setAuthenticated(true);
       setAuthError('');
+      setAttempts(0);
     } else {
-      setAuthError('Incorrect password.');
+      const newAttempts = attempts + 1;
+      setAttempts(newAttempts);
       setPasswordInput('');
+      if (newAttempts >= 5) {
+        const lockTime = Date.now() + 5 * 60 * 1000;
+        setLockedUntil(lockTime);
+        setAuthError('Too many failed attempts. Locked for 5 minutes.');
+      } else {
+        setAuthError(`Incorrect password. ${5 - newAttempts} attempt${5 - newAttempts === 1 ? '' : 's'} remaining.`);
+      }
     }
   };
 

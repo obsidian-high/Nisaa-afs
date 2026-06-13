@@ -13,6 +13,7 @@ const Checkout = () => {
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
   const [savedOrderId, setSavedOrderId] = useState(null);
+  const [lastSubmit, setLastSubmit] = useState(0);
   const [formData, setFormData] = useState({
     fullName: '', email: '', phone: '',
     address: '', city: '', state: '', zipCode: '',
@@ -41,20 +42,27 @@ const Checkout = () => {
     return code;
   };
 
+  const sanitize = (str) => String(str).trim().slice(0, 500);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (Date.now() - lastSubmit < 10000) {
+      alert('Please wait a moment before trying again.');
+      return;
+    }
+    setLastSubmit(Date.now());
     setLoading(true);
     try {
       const orderData = {
         order_code: generateOrderCode(),
-        customer_name: formData.fullName,
-        customer_email: formData.email,
-        customer_phone: formData.phone,
-        shipping_address: `${formData.address}, ${formData.city}, ${formData.state} ${formData.zipCode}`,
+        customer_name: sanitize(formData.fullName),
+        customer_email: sanitize(formData.email),
+        customer_phone: sanitize(formData.phone),
+        shipping_address: sanitize(`${formData.address}, ${formData.city}, ${formData.state} ${formData.zipCode}`),
         items: cart,
         total_amount: parseFloat(total),
         payment_method: 'paypal',
-        notes: formData.notes,
+        notes: sanitize(formData.notes),
         status: 'pending_payment',
         created_at: new Date().toISOString()
       };
