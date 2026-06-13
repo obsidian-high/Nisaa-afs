@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../config/supabase';
 import PageTransition from '../components/PageTransition';
 
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'nisaa-admin-2026';
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
 const AdminDashboard = () => {
   const [orders, setOrders] = useState([]);

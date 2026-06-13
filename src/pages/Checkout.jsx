@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import PageTransition from '../components/PageTransition';
 
-const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID || 'test';
+const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
 
 const Checkout = () => {
   const { cart, getCartTotal, clearCart } = useCart();
