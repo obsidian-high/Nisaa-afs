@@ -64,7 +64,7 @@ const Footer = () => {
             {/* DEVELOPER SECTION */}
             <div className="developer-credit">
                 <span>Designed and developed by</span>
-                <a href="https://my-portfolio-f5fb.vercel.app/" target="_blank" rel="noopener noreferrer" className="dev-link">
+                <a href="https://ardenn-porfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="dev-link">
                     <img src="/arden-logo.png" alt="Arden Design" className="dev-logo" />
                 </a>
             </div>
