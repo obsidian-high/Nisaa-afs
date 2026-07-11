@@ -29,4 +29,6 @@ dist-ssr
 *.sln
 *.sw?
 
-node_modules
+node_modulesCHECKOUT_FLOW.md
+ECOMMERCE_SETUP.md
+QUICK_START.md
