@@ -65,7 +65,7 @@ const TrackOrder = () => {
           <div className="container center">
             <span className="sub-head">Nisaa Curio Shop</span>
             <h1>Track Your Order</h1>
-            <p style={{ color: 'rgba(255,255,255,0.8)', maxWidth: '500px', margin: '0 auto' }}>
+            <p style={{ color: '#4A2C4A', maxWidth: '500px', margin: '0 auto' }}>
               Enter your order number to see the current status of your delivery.
             </p>
           </div>
