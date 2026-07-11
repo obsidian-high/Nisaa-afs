@@ -25,6 +25,7 @@ import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
 import AdminDashboard from './pages/AdminDashboard';
 import TrackOrder from './pages/TrackOrder';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
               <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
               <Route path="/track-order" element={<TrackOrder />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
             </Routes>
             
             <Footer /> 
