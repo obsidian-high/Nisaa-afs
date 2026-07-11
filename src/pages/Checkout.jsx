@@ -84,7 +84,7 @@ const Checkout = () => {
     await supabase
       .from('orders')
       .update({ status: 'paid', payment_id: details.id })
-      .eq('id', savedOrderId);
+      .eq('order_code', savedOrderId);
     clearCart();
     navigate(`/order-confirmation/${savedOrderId}`);
   };
