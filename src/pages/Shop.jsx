@@ -1,13 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import { useCart } from '../context/CartContext';
+import { supabase } from '../config/supabase';
 
 const Shop = () => {
   const { addToCart, getCartCount, getCartTotal, setIsCartOpen } = useCart();
-  
+  const [isAdmin, setIsAdmin] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Check if admin is logged in
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsAdmin(!!session);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAdmin(!!session);
+    });
+    return () => subscription.unsubscribe();
   }, []);
 
   // MOCK DATA
@@ -79,27 +89,52 @@ const Shop = () => {
                     <p style={{ color: '#666', fontSize: '1.1rem', marginBottom: '20px' }}>
                         Browse handmade items by our clients and official Nisaa merchandise.
                     </p>
-                    <Link 
-                        to="/track-order"
-                        style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            padding: '10px 24px',
-                            background: 'transparent',
-                            border: '2px solid #4A2C4A',
-                            borderRadius: '50px',
-                            color: '#4A2C4A',
-                            textDecoration: 'none',
-                            fontSize: '0.9rem',
-                            fontWeight: '600',
-                            transition: 'all 0.3s ease'
-                        }}
-                        onMouseOver={(e) => { e.currentTarget.style.background = '#4A2C4A'; e.currentTarget.style.color = 'white'; }}
-                        onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#4A2C4A'; }}
-                    >
-                        <i className="fas fa-truck"></i> Track Your Order
-                    </Link>
+                    <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                      <Link 
+                          to="/track-order"
+                          style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '8px',
+                              padding: '10px 24px',
+                              background: 'transparent',
+                              border: '2px solid #4A2C4A',
+                              borderRadius: '50px',
+                              color: '#4A2C4A',
+                              textDecoration: 'none',
+                              fontSize: '0.9rem',
+                              fontWeight: '600',
+                              transition: 'all 0.3s ease'
+                          }}
+                          onMouseOver={(e) => { e.currentTarget.style.background = '#4A2C4A'; e.currentTarget.style.color = 'white'; }}
+                          onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#4A2C4A'; }}
+                      >
+                          <i className="fas fa-truck"></i> Track Your Order
+                      </Link>
+                      {isAdmin && (
+                        <Link
+                          to="/admin"
+                          style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '8px',
+                              padding: '10px 24px',
+                              background: '#4A2C4A',
+                              border: '2px solid #4A2C4A',
+                              borderRadius: '50px',
+                              color: 'white',
+                              textDecoration: 'none',
+                              fontSize: '0.9rem',
+                              fontWeight: '600',
+                              transition: 'all 0.3s ease'
+                          }}
+                          onMouseOver={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#4A2C4A'; }}
+                          onMouseOut={(e) => { e.currentTarget.style.background = '#4A2C4A'; e.currentTarget.style.color = 'white'; }}
+                        >
+                          <i className="fas fa-tachometer-alt"></i> Admin Dashboard
+                        </Link>
+                      )}
+                    </div>
                 </div>
 
                 {/* Grid */}
