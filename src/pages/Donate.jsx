@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PageTransition from '../components/PageTransition';
+import Footer from '../components/Footer';
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 const PAYPAL_DONATIONS_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID_DONATIONS;
@@ -251,6 +252,7 @@ const Donate = () => {
 
       </div>
     </PageTransition>
+    <Footer />
   );
 };
 

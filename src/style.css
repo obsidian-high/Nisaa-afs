@@ -2141,6 +2141,16 @@ body {
   margin: 0; 
 }
 
+/* Style the placeholder to match the button text */
+.amt-input::placeholder {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-dark);
+    text-align: center;
+    opacity: 1;
+}
+
 /* --- NAVBAR LINKS STYLING --- */
 
 /* 1. Default State */
