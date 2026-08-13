@@ -211,31 +211,37 @@ const Checkout = () => {
                       Complete your payment securely via PayPal. You'll be redirected back once done.
                     </p>
 
-                    <PayPalScriptProvider options={{ 
-                      clientId: PAYPAL_CLIENT_ID, 
-                      currency: 'USD', 
-                      intent: 'capture',
-                      components: 'buttons',
-                      enableFunding: 'venmo,card'
-                    }}>
-                      <PayPalButtons
-                        style={{ layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay' }}
-                        createOrder={(data, actions) => {
-                          return actions.order.create({
-                            purchase_units: [{
-                              amount: { value: total },
-                              description: cart.map(i => `${i.quantity}x ${i.title}`).join(', '),
-                              custom_id: `SHOP-${savedOrderId}`
-                            }]
-                          });
-                        }}
-                        onApprove={handlePayPalApprove}
-                        onError={(err) => {
-                          console.error('PayPal error:', err);
-                          alert('Payment failed. Please try again.');
-                        }}
-                      />
-                    </PayPalScriptProvider>
+                    {PAYPAL_CLIENT_ID ? (
+                      <PayPalScriptProvider options={{ 
+                        clientId: PAYPAL_CLIENT_ID, 
+                        currency: 'USD', 
+                        intent: 'capture',
+                        components: 'buttons',
+                        enableFunding: 'venmo,card'
+                      }}>
+                        <PayPalButtons
+                          style={{ layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay' }}
+                          createOrder={(data, actions) => {
+                            return actions.order.create({
+                              purchase_units: [{
+                                amount: { value: total },
+                                description: cart.map(i => `${i.quantity}x ${i.title}`).join(', '),
+                                custom_id: `SHOP-${savedOrderId}`
+                              }]
+                            });
+                          }}
+                          onApprove={handlePayPalApprove}
+                          onError={(err) => {
+                            console.error('PayPal error:', err);
+                            alert('Payment failed. Please try again.');
+                          }}
+                        />
+                      </PayPalScriptProvider>
+                    ) : (
+                      <p style={{ color: '#999', textAlign: 'center', padding: '20px 0' }}>
+                        Payment unavailable — configuration pending.
+                      </p>
+                    )}
 
                     <div className="secure-badge">
                       <i className="fas fa-lock"></i> 100% Secure Transaction

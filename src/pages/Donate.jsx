@@ -188,35 +188,40 @@ const Donate = () => {
                       />
                     </div>
 
-                    {/* PAYPAL SDK BUTTONS */}
-                    <PayPalScriptProvider options={{ 
-                      clientId: PAYPAL_DONATIONS_CLIENT_ID, 
-                      currency: 'USD', 
-                      intent: 'capture',
-                      components: 'buttons',
-                      enableFunding: 'venmo,card'
-                    }}>
-                      <PayPalButtons
-                        style={{ layout: 'vertical', color: 'gold', shape: 'rect', label: 'donate' }}
-                        createOrder={(data, actions) => {
-                          return actions.order.create({
-                            purchase_units: [{
-                              amount: { value: finalAmount },
-                              description: 'Donation to Nisaa African Family Services',
-                              custom_id: `DONATION-${Date.now()}`
-                            }]
-                          });
-                        }}
-                        onApprove={async (data, actions) => {
-                          await actions.order.capture();
-                          setShowThankYou(true);
-                        }}
-                        onError={(err) => {
-                          console.error('PayPal donation error:', err);
-                          alert('Payment failed. Please try again.');
-                        }}
-                      />
-                    </PayPalScriptProvider>
+                    {PAYPAL_DONATIONS_CLIENT_ID ? (
+                      <PayPalScriptProvider options={{ 
+                        clientId: PAYPAL_DONATIONS_CLIENT_ID, 
+                        currency: 'USD', 
+                        intent: 'capture',
+                        components: 'buttons',
+                        enableFunding: 'venmo,card'
+                      }}>
+                        <PayPalButtons
+                          style={{ layout: 'vertical', color: 'gold', shape: 'rect', label: 'donate' }}
+                          createOrder={(data, actions) => {
+                            return actions.order.create({
+                              purchase_units: [{
+                                amount: { value: finalAmount },
+                                description: 'Donation to Nisaa African Family Services',
+                                custom_id: `DONATION-${Date.now()}`
+                              }]
+                            });
+                          }}
+                          onApprove={async (data, actions) => {
+                            await actions.order.capture();
+                            setShowThankYou(true);
+                          }}
+                          onError={(err) => {
+                            console.error('PayPal donation error:', err);
+                            alert('Payment failed. Please try again.');
+                          }}
+                        />
+                      </PayPalScriptProvider>
+                    ) : (
+                      <p style={{ color: '#999', textAlign: 'center', padding: '20px 0' }}>
+                        Payment unavailable — configuration pending.
+                      </p>
+                    )}
 
                     <div className="secure-badge">
                       <i className="fas fa-lock"></i> 100% Secure Transaction
