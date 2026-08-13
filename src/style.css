@@ -1521,6 +1521,107 @@ a.featured-blog:hover h3 {
     .gala-intro { font-size: 1.1rem; }
 }
 
+/* --- MAGAZINE LAYOUT (Story + Sidebar) --- */
+.magazine-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 50px;
+    align-items: start;
+    margin-top: 20px;
+}
+
+.story-column p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #444;
+    margin-bottom: 24px;
+}
+
+/* Drop Cap — large decorative first letter */
+.drop-cap {
+    float: left;
+    font-family: 'Cinzel', serif;
+    font-size: 4.2rem;
+    line-height: 0.75;
+    padding-right: 10px;
+    padding-top: 8px;
+    color: var(--gala-gold);
+}
+
+/* Pull Quote */
+.pull-quote {
+    border-left: 4px solid var(--gala-gold);
+    background: #faf6f0;
+    padding: 20px 25px;
+    margin: 30px 0;
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    color: var(--deep-purple);
+    font-style: italic;
+    border-radius: 0 8px 8px 0;
+    line-height: 1.6;
+}
+
+/* Sidebar stat card */
+.sidebar-column .stat-card {
+    background: #fff;
+    border: 1px solid #f0e8d8;
+    border-top: 4px solid var(--gala-gold);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 120px;
+}
+
+.sidebar-column .stat-card h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+/* Overrides the global stat-row which was meant for a different section */
+.sidebar-column .stat-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 0;
+    margin-bottom: 16px;
+    border-top: none;
+    padding-top: 0;
+    font-size: 0.95rem;
+    color: #444;
+    font-weight: 500;
+}
+
+.sidebar-column .stat-row:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar-column .stat-row i {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #faf6f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .magazine-layout {
+        grid-template-columns: 1fr;
+    }
+    .sidebar-column .stat-card {
+        position: static;
+    }
+}
+
 /* =========================================
    ADD-ON: CONTACT PAGE STYLES
    ========================================= */

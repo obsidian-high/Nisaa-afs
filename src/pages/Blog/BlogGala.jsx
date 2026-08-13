@@ -33,11 +33,12 @@ const BlogGala = () => {
                 <div className="magazine-layout">
                     <div className="story-column">
                         <p><span className="drop-cap">I</span>t was an evening of firsts. The first time we filled a hall with such diverse supporters. The first time many survivors felt safe enough to share their stories publicly. And the first step toward the Nisaa we know today.</p>
-                        <p>The energy in the room was palpable—a mix of celebration, culture, and deep determination.</p>
+                        <p>The energy in the room was palpable — a mix of celebration, culture, and deep determination. Elders, advocates, and allies gathered under one roof, united by a single conviction: that silence is not safety.</p>
                         
                         <div className="pull-quote">"We laid the foundation for a future free of fear."</div>
                         
-                        <p>Proceeds from this night launched our <strong>Youth Prevention Program</strong>, ensuring the next generation has the tools to build healthy relationships.</p>
+                        <p>The evening featured powerful testimonials from survivors, performances rooted in African heritage, and a call to action that moved the entire room to its feet. For many attendees, it was the first time they had seen their community speak openly about domestic violence.</p>
+                        <p>Proceeds from this night launched our <strong>Youth Prevention Program</strong>, ensuring the next generation has the tools to build healthy relationships — before harm ever begins.</p>
                     </div>
 
                     <div className="sidebar-column">
