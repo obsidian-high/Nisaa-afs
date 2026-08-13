@@ -29,6 +29,7 @@ const Donate = () => {
   const finalAmount = parseFloat(customAmount || amount || 0).toFixed(2);
 
   return (
+    <>
     <PageTransition>
       <div className="donate-page">
 
@@ -253,6 +254,7 @@ const Donate = () => {
       </div>
     </PageTransition>
     <Footer />
+  </>
   );
 };
 
