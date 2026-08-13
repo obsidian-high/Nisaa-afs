@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import PageTransition from '../components/PageTransition';
 
-const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
+const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID_SHOP;
 
 const Checkout = () => {
   const { cart, getCartTotal, clearCart } = useCart();
@@ -211,14 +211,21 @@ const Checkout = () => {
                       Complete your payment securely via PayPal. You'll be redirected back once done.
                     </p>
 
-                    <PayPalScriptProvider options={{ clientId: PAYPAL_CLIENT_ID, currency: 'USD', intent: 'capture' }}>
+                    <PayPalScriptProvider options={{ 
+                      clientId: PAYPAL_CLIENT_ID, 
+                      currency: 'USD', 
+                      intent: 'capture',
+                      components: 'buttons',
+                      enableFunding: 'venmo,card'
+                    }}>
                       <PayPalButtons
                         style={{ layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay' }}
                         createOrder={(data, actions) => {
                           return actions.order.create({
                             purchase_units: [{
                               amount: { value: total },
-                              description: cart.map(i => `${i.quantity}x ${i.title}`).join(', ')
+                              description: cart.map(i => `${i.quantity}x ${i.title}`).join(', '),
+                              custom_id: `SHOP-${savedOrderId}`
                             }]
                           });
                         }}

@@ -72,7 +72,7 @@ body { background-color: var(--cream-bg); color: var(--text-dark); font-family: 
 .nav-island a { 
     text-decoration: none; 
     color: var(--text-dark); 
-    font-weight: 600; 
+    font-weight: 500; 
     font-size: 0.9rem; 
     transition: 0.3s; 
     white-space: nowrap;
@@ -696,7 +696,7 @@ footer {
 .board-role { font-size: 0.85rem; color: #888; }
 
 /* Active Link in Nav (Shows which page you are on) */
-.nav-island a.active-link { color: var(--deep-purple); font-weight: 800; }
+.nav-island a.active-link { color: var(--deep-purple); font-weight: 700; }
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -2147,7 +2147,7 @@ body {
 .nav-island a {
     color: #333;           /* Dark grey text */
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 500 !important;
     position: relative;    /* Needed for the gold dot */
     transition: color 0.3s ease; /* Smooth color change */
 }
@@ -2159,8 +2159,8 @@ body {
 
 /* 3. Active State (Bold Purple + Gold Dot) */
 .nav-island a.active-link {
-    color: #6a1b9a;
-    font-weight: 700;
+    color: #6a1b9a !important;
+    font-weight: 700 !important;
 }
 
 /* --- SHOP BUTTON IN NAVBAR --- */
