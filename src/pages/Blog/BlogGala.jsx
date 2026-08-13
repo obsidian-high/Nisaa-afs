@@ -44,9 +44,9 @@ const BlogGala = () => {
                     <div className="sidebar-column">
                         <div className="stat-card" style={{ borderTopColor: 'var(--gala-gold)' }}>
                             <h4>Event Snapshot</h4>
-                            <div className="stat-row"><i className="fas fa-map-marker-alt" style={{ color: 'var(--gala-gold)' }}></i> Des Moines, IA</div>
-                            <div className="stat-row"><i className="fas fa-calendar-day" style={{ color: 'var(--gala-gold)' }}></i> Oct 19, 2019</div>
-                            <div className="stat-row"><i className="fas fa-heart" style={{ color: 'var(--gala-gold)' }}></i> Sold Out</div>
+                            <div className="gala-stat-row"><i className="fas fa-map-marker-alt" style={{ color: 'var(--gala-gold)' }}></i> Des Moines, IA</div>
+                            <div className="gala-stat-row"><i className="fas fa-calendar-day" style={{ color: 'var(--gala-gold)' }}></i> Oct 19, 2019</div>
+                            <div className="gala-stat-row"><i className="fas fa-heart" style={{ color: 'var(--gala-gold)' }}></i> Sold Out</div>
                         </div>
                     </div>
                 </div>
