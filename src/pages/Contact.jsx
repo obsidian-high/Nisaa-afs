@@ -89,8 +89,12 @@ const Contact = () => {
                               <select defaultValue="General Inquiry">
                                   <option>General Inquiry</option>
                                   <option>Request Assistance</option>
+                                  <option>Partnership Opportunity</option>
+                                  <option>Media & Press</option>
                                   <option>Volunteer Opportunities</option>
                                   <option>Donation Question</option>
+                                  <option>Event Collaboration</option>
+                                  <option>Other</option>
                               </select>
                           </div>
                           <div className="form-group">

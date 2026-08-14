@@ -43,21 +43,6 @@ const DVAwareness = () => {
                 margin: '0 auto',
                 padding: '0 20px'
             }}>
-                <Link to="/blog" style={{ 
-                    color: 'rgba(255,255,255,0.9)', 
-                    textDecoration: 'none', 
-                    marginBottom: '25px', 
-                    display: 'inline-flex', 
-                    alignItems: 'center', 
-                    gap: '10px', 
-                    fontWeight: 'bold',
-                    fontSize: '0.9rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px'
-                }}>
-                    <i className="fas fa-arrow-left"></i> Back to Blog
-                </Link>
-                
                 <div style={{ marginBottom: '15px' }}>
                      <span style={{ 
                          backgroundColor: goldAccent, 
@@ -212,6 +197,20 @@ const DVAwareness = () => {
                         <li style={{ marginBottom: '5px' }}>National Coalition Against Domestic Violence (NCADV). "National Statistics." <em>NCADV.org</em>.</li>
                         <li>U.S. Citizenship and Immigration Services. "Battered Spouse, Children and Parents (VAWA)." <em>USCIS.gov</em>.</li>
                     </ol>
+                </div>
+
+                <div style={{ marginTop: '40px', textAlign: 'center' }}>
+                    <Link
+                        to="/blog"
+                        className="blog-back-btn"
+                        style={{
+                            background: 'white',
+                            color: awarenessPurple,
+                            border: `2px solid ${awarenessPurple}`,
+                        }}
+                    >
+                        <i className="fas fa-arrow-left"></i> Back to Blog
+                    </Link>
                 </div>
              </div>
         </section>

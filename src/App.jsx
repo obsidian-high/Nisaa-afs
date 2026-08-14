@@ -20,6 +20,9 @@ import Donate from './pages/Donate';
 import GetInvolved from './pages/GetInvolved';
 import Gala from './pages/Blog/Gala';
 import DVAwareness from './pages/Blog/DVAwareness';
+import PullUpAndStitch from './pages/Blog/PullUpAndStitch';
+import LaurenCollinsWellness from './pages/Blog/LaurenCollinsWellness';
+import PullUpAndStitchSep from './pages/Blog/PullUpAndStitchSep';
 import Shop from './pages/Shop';
 import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
@@ -48,6 +51,9 @@ function App() {
               <Route path="/get-involved" element={<GetInvolved />} />
               <Route path="/blog/gala" element={<Gala />} />
               <Route path="/blog/dv-awareness" element={<DVAwareness />} />
+              <Route path="/blog/pull-up-and-stitch" element={<PullUpAndStitch />} />
+              <Route path="/blog/lauren-collins-wellness" element={<LaurenCollinsWellness />} />
+              <Route path="/blog/pull-up-and-stitch-september" element={<PullUpAndStitchSep />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />

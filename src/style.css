@@ -1572,6 +1572,7 @@ a.featured-blog:hover h3 {
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     position: sticky;
     top: 120px;
+    display: block; /* override global .stat-card flex which rows everything horizontally */
 }
 
 .sidebar-column .stat-card h4 {
@@ -4094,3 +4095,154 @@ body {
     .track-form { flex-direction: column; }
     .track-result-header { flex-direction: column; gap: 15px; }
 }
+
+/* --- BLOG BACK BUTTON HOVER ANIMATION --- */
+.blog-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 50px;
+    padding: 12px 28px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, gap 0.25s ease;
+}
+
+.blog-back-btn:hover {
+    transform: translateX(-4px);
+    box-shadow: -4px 4px 16px rgba(74, 44, 69, 0.15);
+    gap: 14px;
+}
+
+.blog-back-btn i {
+    transition: transform 0.25s ease;
+}
+
+.blog-back-btn:hover i {
+    transform: translateX(-3px);
+}
+
+/* ============================================
+   GLOBAL HOVER FILLS — CARDS & BUTTONS
+   ============================================ */
+
+/* --- CARD HOVER FILLS --- */
+
+/* Blog cards */
+.blog-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.blog-card:hover {
+    transform: translateY(-6px);
+    background: #f5f0f5;
+    box-shadow: 0 16px 36px rgba(74, 44, 74, 0.12);
+}
+
+/* Hub/program cards */
+.hub-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.hub-card:hover {
+    transform: translateY(-8px);
+    background: #f5f0f5;
+    box-shadow: 0 20px 40px rgba(74, 44, 74, 0.12);
+}
+
+/* Board cards */
+.board-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.board-card:hover {
+    transform: translateY(-5px);
+    background: #f5f0f5;
+    box-shadow: 0 15px 30px rgba(74, 44, 74, 0.1);
+}
+
+/* Team cards */
+.team-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.team-card:hover {
+    transform: translateY(-8px);
+    background: #f5f0f5;
+    box-shadow: 0 20px 40px rgba(74, 44, 74, 0.12);
+}
+
+/* Impact cards (donate page) */
+.impact-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.impact-card:hover {
+    transform: translateY(-4px);
+    background: #f5f0f5;
+    box-shadow: 0 12px 28px rgba(74, 44, 74, 0.1);
+}
+
+/* Feature boxes (programs outreach) */
+.feature-box {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(74, 44, 74, 0.15);
+    filter: brightness(1.04);
+}
+
+/* --- BUTTON HOVER FILLS --- */
+
+/* Tab buttons — fill to purple */
+.tab-btn {
+    transition: all 0.2s ease;
+}
+.tab-btn:hover:not(.active) {
+    background: #f5f0f5;
+    border-color: var(--deep-purple);
+    color: var(--deep-purple);
+    transform: translateY(-2px);
+}
+
+/* Amount buttons on donate page */
+.amt-btn {
+    transition: all 0.2s ease;
+}
+.amt-btn:hover:not(.active) {
+    background: var(--deep-purple);
+    border-color: var(--deep-purple);
+    color: white;
+}
+
+/* Outline button */
+.btn-outline {
+    transition: all 0.25s ease;
+}
+.btn-outline:hover {
+    background: var(--deep-purple);
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(74, 44, 74, 0.2);
+}
+
+/* Back button in checkout */
+.back-btn {
+    transition: all 0.2s ease;
+}
+.back-btn:hover {
+    background: #f5f0f5;
+    color: var(--deep-purple);
+    border-radius: 8px;
+}
+
+/* Read more small links */
+.read-more-small {
+    transition: color 0.2s ease, letter-spacing 0.2s ease;
+    display: inline-block;
+}
+.read-more-small:hover {
+    color: var(--deep-purple) !important;
+    letter-spacing: 0.5px;
+}
+
+/* Blog back button (animated slide) already handled by .blog-back-btn */
+
+/* Donate widget secure badge — no hover needed */
