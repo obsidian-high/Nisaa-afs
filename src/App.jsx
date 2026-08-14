@@ -7,6 +7,7 @@ import ErrorBoundary from './ErrorBoundary';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CartSidebar from './components/CartSidebar';
+import ScrollToTop from './components/ScrollToTop';
 
 // Import Pages
 import Home from './pages/Home';
@@ -35,6 +36,7 @@ function App() {
     <ErrorBoundary>
       <CartProvider>
         <Router>
+          <ScrollToTop />
           <div className="App">
             <Navbar />
             <CartSidebar />
