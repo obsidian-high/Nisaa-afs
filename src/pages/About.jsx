@@ -160,7 +160,7 @@ const About = () => {
                         <div className="avatar-placeholder purple-bg">GK</div>
                         <div className="team-info">
                             <h3>Gatete Pauline Karamera</h3>
-                            <span className="role">Multilingual Advocate</span>
+                            <span className="role">Outreach Coordinator & Advocate</span>
                             <p>Des Moines</p>
                         </div>
                     </div>
@@ -177,7 +177,7 @@ const About = () => {
                      <div className="team-card fade-up">
                         <div className="avatar-placeholder purple-bg">FJ</div>
                         <div className="team-info">
-                            <h3>Farhan Jorgensen</h3>
+                            <h3>Farah Jorgensen</h3>
                             <span className="role">Housing Advocate</span>
                         </div>
                     </div>

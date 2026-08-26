@@ -224,7 +224,7 @@ const Home = () => {
                   <div className="info-card fade-up">
                       <div className="card-icon"><i className="fas fa-hands-helping"></i></div>
                       <h3>Crisis Support</h3>
-                      <p>Immediate, culturally competent intervention for survivors of domestic violence including safety planning and shelter access.</p>
+                      <p>Immediate, culturally relevant intervention for survivors of domestic violence including safety planning and shelter access.</p>
                   </div>
 
                   <div className="info-card main-card fade-up delay-1">

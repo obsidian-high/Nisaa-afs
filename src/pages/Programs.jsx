@@ -298,7 +298,7 @@ const Programs = () => {
               </div>
               <div style={{ background: 'white', borderRadius: '20px', padding: '35px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', borderLeft: `5px solid ${sage}` }}>
                 <p style={{ fontSize: '1.05rem', lineHeight: '1.8', color: '#555', margin: 0 }}>
-                  Female Genital Cutting affects millions of women globally, including members of our Iowa community. Nisaa leads state-wide education and advocacy efforts — working directly with families, faith leaders, and healthcare providers to end the practice while providing compassionate, survivor-centered support.
+                  Female Genital Cutting affects millions of survivors globally, including members of our Iowa community. Nisaa leads state-wide education and advocacy efforts — working directly with families, faith leaders, and healthcare providers to end the practice while providing compassionate, survivor-centered support.
                 </p>
               </div>
             </div>

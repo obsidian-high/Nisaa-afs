@@ -94,7 +94,7 @@ const DVAwareness = () => {
                         
                         <div style={{ display: 'flex', alignItems: 'baseline', marginTop: '30px' }}>
                             <span style={{ fontSize: '4rem', fontWeight: '800', color: awarenessPurple, lineHeight: 1, marginRight: '15px' }}>1 in 3</span>
-                            <span style={{ fontSize: '1.2rem', fontWeight: 'bold', color: deepBrandPurple }}>Women</span>
+                            <span style={{ fontSize: '1.2rem', fontWeight: 'bold', color: deepBrandPurple }}>Survivors</span>
                         </div>
                         <p style={{ margin: '5px 0 25px 0', color: '#666' }}>have experienced physical violence by an intimate partner.</p>
 
