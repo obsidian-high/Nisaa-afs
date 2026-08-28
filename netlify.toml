@@ -3,6 +3,16 @@
   publish = "dist"
 
 [[redirects]]
+  from = "/about-nisaa/"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/about-nisaa"
+  to = "/about"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
