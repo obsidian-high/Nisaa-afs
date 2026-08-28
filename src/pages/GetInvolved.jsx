@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PageTransition from '../components/PageTransition';
 
+const FORMSPREE_URL = 'https://formspree.io/f/xojjqwqa';
+
 const GetInvolved = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -12,12 +14,31 @@ const GetInvolved = () => {
     interest: 'General Volunteering',
     message: ''
   });
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Thank you, ${form.name}! We've received your application for ${form.interest}.`);
-    // Reset form
-    setForm({ name: '', email: '', interest: 'General Volunteering', message: '' });
+    setStatus('sending');
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: `Volunteer Application — ${form.interest}`,
+          message: form.message
+        })
+      });
+      if (res.ok) {
+        setStatus('success');
+        setForm({ name: '', email: '', interest: 'General Volunteering', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -108,6 +129,31 @@ const GetInvolved = () => {
                 </div>
                 
                 <div style={{ backgroundColor: 'white', padding: '40px', borderRadius: '0 0 24px 24px', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}>
+
+                    {/* SUCCESS */}
+                    {status === 'success' && (
+                      <div style={{ background: '#f0f9f4', border: '1px solid #8da399', borderRadius: '12px', padding: '30px', textAlign: 'center' }}>
+                        <i className="fas fa-check-circle" style={{ color: '#8da399', fontSize: '2.5rem', marginBottom: '12px', display: 'block' }}></i>
+                        <h4 style={{ color: '#4A2C4A', marginBottom: '8px' }}>Application Received!</h4>
+                        <p style={{ color: '#666', fontSize: '0.95rem', marginBottom: '16px' }}>
+                          Thank you, {form.name || 'friend'}! We'll be in touch shortly about your interest in {form.interest}.
+                        </p>
+                        <button onClick={() => setStatus('idle')} style={{ background: 'none', border: 'none', color: '#4A2C4A', fontWeight: '700', cursor: 'pointer', textDecoration: 'underline' }}>
+                          Submit another application
+                        </button>
+                      </div>
+                    )}
+
+                    {/* ERROR */}
+                    {status === 'error' && (
+                      <div style={{ background: '#fff5f5', border: '1px solid #e57373', borderRadius: '12px', padding: '15px 20px', marginBottom: '20px', color: '#c62828', fontSize: '0.95rem' }}>
+                        <i className="fas fa-exclamation-circle" style={{ marginRight: '8px' }}></i>
+                        Something went wrong. Please try again or email us at Contact@nisaa-afs.org
+                      </div>
+                    )}
+
+                    {/* FORM */}
+                    {status !== 'success' && (
                     <form onSubmit={handleSubmit}>
                         
                         {/* NAME & EMAIL ROW */}
@@ -163,6 +209,7 @@ const GetInvolved = () => {
 
                         <button 
                             type="submit" 
+                            disabled={status === 'sending'}
                             style={{ 
                                 width: '100%', 
                                 padding: '15px', 
@@ -175,10 +222,11 @@ const GetInvolved = () => {
                                 cursor: 'pointer' 
                             }}
                         >
-                            Submit Application
+                            {status === 'sending' ? 'Submitting...' : 'Submit Application'}
                         </button>
 
                     </form>
+                    )}
                 </div>
             </div>
 
