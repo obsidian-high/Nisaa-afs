@@ -84,7 +84,7 @@ const Programs = () => {
                 {[
                   { number: '24/7', label: 'Crisis Support', icon: 'fa-phone-alt' },
                   { number: '3', label: 'Core Programs', icon: 'fa-layer-group' },
-                  { number: '5+', label: 'Languages Served', icon: 'fa-language' },
+                  { number: '10+', label: 'Languages Served', icon: 'fa-language' },
                   { number: '100%', label: 'Confidential', icon: 'fa-lock' },
                 ].map(({ number, label, icon }) => (
                   <div key={label} style={{
