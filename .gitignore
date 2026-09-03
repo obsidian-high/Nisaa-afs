@@ -29,6 +29,11 @@ dist-ssr
 *.sln
 *.sw?
 
-node_modulesCHECKOUT_FLOW.md
+node_modules
+
+# Documentation — keep local only
+CHECKOUT_FLOW.md
 ECOMMERCE_SETUP.md
 QUICK_START.md
+README.md
+*.md
