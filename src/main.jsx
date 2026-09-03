@@ -10,6 +10,16 @@ Sentry.init({
   environment: import.meta.env.MODE,
   enabled: import.meta.env.PROD,
   tracesSampleRate: 0,
+  ignoreErrors: [
+    // Supabase auth lock timeout — caused by browser extensions, not our code
+    /Acquiring an exclusive Navigator LockManager lock.*timed out/,
+    // Common browser extension noise
+    'antifingerprint not defined',
+    // Network errors outside our control
+    'NetworkError',
+    'Failed to fetch',
+    'Load failed',
+  ],
 });
 
 // Initialize Google Analytics — only on production
